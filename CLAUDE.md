@@ -41,12 +41,21 @@ The game is structured as a state machine driving a `requestAnimationFrame` loop
 
 Remote: `https://github.com/Faisalb7/top-down-shooter`
 
-Commit and push after every meaningful change:
+**This is a hard requirement:** after every meaningful unit of work — a new feature, a bug fix, a visual tweak, a refactor — commit and push immediately. Never leave completed work uncommitted. This ensures we can always revert to a known-good state and never lose progress.
 
 ```bash
 git add <file>
-git commit -m "concise description of what changed and why"
+git commit -m "$(cat <<'EOF'
+Short summary of what changed and why
+
+Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>
+EOF
+)"
 git push
 ```
 
-Always commit per logical change (one feature, one fix) — not bulk "misc changes" commits.
+Rules:
+- One logical change per commit — not bulk "misc changes" commits
+- Commit message summary line should say *what* changed and *why*, not just *what*
+- Always `git push` immediately after committing — a local-only commit is not a saved state
+- If multiple independent changes were made in one session, split them into separate commits before pushing
